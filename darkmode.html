@@ -1,0 +1,39 @@
+<html>
+  <head>
+    
+    <script>
+      const colorOverride = window.localStorage.getItem("color-mode");
+      const hasColorOverride = typeof colorOverride === "string";
+      if (hasColorOverride) {
+        document.documentElement.setAttribute(
+          "data-force-color-mode",
+          colorOverride
+        );
+      }
+    </script>
+    <link rel="stylesheet" href="darkmode.css">
+  </head>
+  <body>
+    <h1>
+      Dark Mode 🔆/🌙 + Override with Vanilla JS
+      <a id="reset" href="#" title="Clear darkmode override"
+        ><small>(reset)</small></a
+      >
+    </h1>
+    <div>
+      <input type="checkbox" id="toggle-darkmode" />
+      <label for="toggle-darkmode"><span>Toggle Light/Dark mode</span></label>
+
+      <script>
+        if (
+          colorOverride == "dark" ||
+          (!hasColorOverride &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.querySelector("#toggle-darkmode").checked = true;
+        }
+      </script>
+    </div>
+    <script src="darkmode.js"></script>
+  </body>
+</html>
